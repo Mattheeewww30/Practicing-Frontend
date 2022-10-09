@@ -6,7 +6,7 @@ const hamburguerIcon = document.querySelector(".menu")
 const mobileMenu = document.querySelector(".mobile-menu")
 // For shopping 
 const kartIcon = document.querySelector(".navbar-shopping-cart")
-const kartMenu = document.querySelector(".product-detail")
+const shoppingCartContainer = document.querySelector("#shoppingCart")
 // Products
 const cardsContainer = document.querySelector(".cards-container")
 
@@ -17,19 +17,19 @@ hamburguerIcon.addEventListener("click", popMobileMenu);
 kartIcon.addEventListener("click", popKarteMenu);
 
 function popDesktopMenu (){
-    const isKartMenuClose = kartMenu.classList.contains("inactive")
+    const isKartMenuClose = shoppingCartContainer.classList.contains("inactive")
 
     if (!isKartMenuClose){
-        kartMenu.classList.add("inactive")
+        shoppingCartContainer.classList.add("inactive")
     }
     desktopMenu.classList.toggle("inactive");
 }
 
 function popMobileMenu(){
-    const isKartMenuClose = kartMenu.classList.contains("inactive")
+    const isKartMenuClose = shoppingCartContainer.classList.contains("inactive")
 
     if (!isKartMenuClose){
-        kartMenu.classList.add("inactive")
+        shoppingCartContainer.classList.add("inactive")
     }
     mobileMenu.classList.toggle("inactive");
 }
@@ -40,7 +40,7 @@ function popKarteMenu(){
     if (!isMobileMenuClose){
         mobileMenu.classList.add("inactive")
     }
-    kartMenu.classList.toggle("inactive");
+    shoppingCartContainer.classList.toggle("inactive");
 }
 
 
