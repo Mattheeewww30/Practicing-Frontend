@@ -9,12 +9,17 @@ const kartIcon = document.querySelector(".navbar-shopping-cart")
 const shoppingCartContainer = document.querySelector("#shoppingCart")
 // Products
 const cardsContainer = document.querySelector(".cards-container")
+// Product Detail
+const productDetailContainer = document.querySelector("#productDetail")
+const productDetailCloseIcon = document.querySelector(".product-detail-close")
 
 
 // Render Menu
 emailIcon.addEventListener("click", popDesktopMenu);
 hamburguerIcon.addEventListener("click", popMobileMenu);
 kartIcon.addEventListener("click", popKarteMenu);
+// Close Product Detail
+productDetailCloseIcon.addEventListener("click", closeProductDetail);
 
 function popDesktopMenu (){
     const isKartMenuClose = shoppingCartContainer.classList.contains("inactive")
@@ -28,21 +33,38 @@ function popDesktopMenu (){
 function popMobileMenu(){
     const isKartMenuClose = shoppingCartContainer.classList.contains("inactive")
 
+    // Mobile Menu VS Kart Menu
     if (!isKartMenuClose){
         shoppingCartContainer.classList.add("inactive")
     }
     mobileMenu.classList.toggle("inactive");
+    // Mobile Menu VS Product Detail
+    closeProductDetail()
 }
 
 function popKarteMenu(){
+    // Mobile Menu VS Kart Menu
     const isMobileMenuClose = mobileMenu.classList.contains("inactive")
-
     if (!isMobileMenuClose){
         mobileMenu.classList.add("inactive")
     }
+
+    // Product Detail VS Kart Menu
+    closeProductDetail()
+
     shoppingCartContainer.classList.toggle("inactive");
 }
 
+function openProductDetail(){
+    productDetailContainer.classList.remove("inactive")
+    // Product Detail VS Kart Menu
+    shoppingCartContainer.classList.add("inactive")
+
+}
+
+function closeProductDetail(){
+    productDetailContainer.classList.add("inactive")
+}
 
 // Render Products
 const productList = []
@@ -69,6 +91,8 @@ function renderProducts(array){
     
         const productImg = document.createElement("img")
         productImg.setAttribute("src", product.image)
+        productImg.addEventListener("click", openProductDetail)
+
     
         const productInfo = document.createElement("div")
         productInfo.classList.add("product-info")
